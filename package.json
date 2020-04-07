@@ -7,7 +7,8 @@
     "start": "npx webpack-dev-server --env.NODE_ENV=dev --open --config webpack.config.js",
     "build": "npx webpack --env.NODE_ENV=prod --config webpack.config.js",
     "lint": "npx eslint --ext .js,.jsx,.ts,.tsx --fix src/",
-    "test": "npx jest"
+    "test": "npx jest",
+    "calc": "npx ts-node src/calc"
   },
   "repository": {
     "type": "git",
