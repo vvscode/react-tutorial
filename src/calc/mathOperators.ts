@@ -29,3 +29,10 @@ export const mathOperators: { [key: string]: BinaryOperatorType } = {
   "+": add,
   "-": sub,
 };
+
+export const mathOperatorsPriorities: { [key: string]: number } = {
+  "*": 2,
+  "/": 2,
+  "+": 1,
+  "-": 1,
+};

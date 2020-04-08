@@ -1,6 +1,6 @@
 import { mathOperators, BinaryOperatorType } from "./mathOperators";
 
-type RPNType = number | string;
+export type RPNType = Array<number | string>;
 
 const getNumber = (num: number | undefined): number => {
   if (typeof num === "undefined") {
@@ -15,8 +15,8 @@ const getOperator = (symbolOperator: string): BinaryOperatorType =>
 
 // infix notation     <-- 3 * 2 -1
 // RPN                <-- [3, 2, "*", 1, "-"]
-export const calcRPN = (rpn: Array<RPNType>): number => {
-  const calc = rpn.reduce((stack: number[], item: RPNType) => {
+export const calcRPN = (rpn: RPNType): number => {
+  const calc = rpn.reduce((stack: number[], item: number | string) => {
     if (typeof item === "number") {
       stack.push(item);
     } else {

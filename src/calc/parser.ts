@@ -1,14 +1,11 @@
-type ParsedLineType = (number | string)[];
+import { isNumber, isOperators } from "./helpers";
 
-const isNumber = (str: string): boolean => /\d/.test(str);
-
-const isOperators = (str: string): boolean =>
-  ["+", "-", "/", "*"].indexOf(str) !== -1;
+export type InfixNotationType = (number | string)[];
 
 const isBrackets = (str: string): boolean => ["(", ")"].indexOf(str) !== -1;
 
-export const parser = (line: string): ParsedLineType => {
-  const stack: ParsedLineType = [];
+export const parser = (line: string): InfixNotationType => {
+  const stack: InfixNotationType = [];
   let num = "";
 
   for (let index = 0; index < line.length; index += 1) {
@@ -20,11 +17,21 @@ export const parser = (line: string): ParsedLineType => {
 
     if (isOperators(char) || isBrackets(char)) {
       if (num !== "") {
+        debugger;
         stack.push(Number.parseInt(num));
         num = "";
       }
 
-      stack.push(char);
+      if (
+        char === "-" &&
+        !isNumber(stack[stack.length - 1] as string) &&
+        stack[stack.length - 1] !== ")"
+      ) {
+        num = "-";
+      } else {
+        num = "";
+        stack.push(char);
+      }
     }
 
     if (index === line.length - 1 && num !== "") {
