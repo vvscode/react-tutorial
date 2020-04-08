@@ -3,8 +3,6 @@ import { InfixNotationType } from "./parser";
 import { RPNType } from "./calcRPN";
 import { mathOperatorsPriorities } from "./mathOperators";
 
-// infix notation   <-- [1, "+", 2]
-// RNP              <-- [1, 2, +]
 export const buildRPN = (infixNotation: InfixNotationType): RPNType => {
   const output: (number | string)[] = [];
   const stack: string[] = [];
@@ -29,10 +27,9 @@ export const buildRPN = (infixNotation: InfixNotationType): RPNType => {
     }
 
     if (isOperators(char as string)) {
-      if (
-        stack.length !== 0 &&
+      while (
         mathOperatorsPriorities[stack[stack.length - 1]] >=
-          mathOperatorsPriorities[char]
+        mathOperatorsPriorities[char]
       ) {
         output.push(stack.pop() as string);
       }
