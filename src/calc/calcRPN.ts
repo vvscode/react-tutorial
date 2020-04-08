@@ -1,29 +1,19 @@
 import { mathOperators, BinaryOperatorType } from "./mathOperators";
 
-export type RPNType = Array<number | string>;
-
-const getNumber = (num: number | undefined): number => {
-  if (typeof num === "undefined") {
-    throw new Error("Error RPN format");
-  }
-
-  return num;
-};
+export type NotationType = (number | string)[];
 
 const getOperator = (symbolOperator: string): BinaryOperatorType =>
   mathOperators[symbolOperator];
 
-// infix notation     <-- 3 * 2 -1
-// RPN                <-- [3, 2, "*", 1, "-"]
-export const calcRPN = (rpn: RPNType): number => {
+export const calcRPN = (rpn: NotationType): number => {
   const calc = rpn.reduce((stack: number[], item: number | string) => {
     if (typeof item === "number") {
       stack.push(item);
     } else {
       const operator: BinaryOperatorType = getOperator(item);
 
-      const secondOperand: number = getNumber(stack.pop());
-      const firstOperand: number = getNumber(stack.pop());
+      const secondOperand: number = stack.pop() as number;
+      const firstOperand: number = stack.pop() as number;
 
       const calcValue = operator(firstOperand, secondOperand);
 

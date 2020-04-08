@@ -1,9 +1,8 @@
 import { isOperators } from "./helpers";
-import { InfixNotationType } from "./parser";
-import { RPNType } from "./calcRPN";
+import { NotationType } from "./calcRPN";
 import { mathOperatorsPriorities } from "./mathOperators";
 
-export const buildRPN = (infixNotation: InfixNotationType): RPNType => {
+export const buildRPN = (infixNotation: NotationType): NotationType => {
   const output: (number | string)[] = [];
   const stack: string[] = [];
 

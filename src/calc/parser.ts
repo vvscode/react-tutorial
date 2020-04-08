@@ -1,11 +1,10 @@
 import { isNumber, isOperators } from "./helpers";
-
-export type InfixNotationType = (number | string)[];
+import { NotationType } from "./calcRPN";
 
 const isBrackets = (str: string): boolean => ["(", ")"].indexOf(str) !== -1;
 
-export const parser = (line: string): InfixNotationType => {
-  const stack: InfixNotationType = [];
+export const parser = (line: string): NotationType => {
+  const stack: NotationType = [];
   let num = "";
 
   for (let index = 0; index < line.length; index += 1) {
