@@ -40,3 +40,12 @@ export const parser = (line: string): NotationType => {
 
   return stack;
 };
+
+export const parseRPN = (line: string): NotationType => {
+  const splitLine = line.split(" ");
+  const rpn: NotationType = splitLine.map((char: string) => {
+    return isOperators(char) ? char : Number.parseInt(char);
+  });
+
+  return rpn;
+};

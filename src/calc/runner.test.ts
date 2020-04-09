@@ -57,3 +57,17 @@ describe("Runner long cases", () => {
     expect(runner("(10 + (29 + 20 + (-14 * 2) / 2) + (-39 - 2))")).toEqual(4);
   });
 });
+
+describe("RPN cases", () => {
+  it("10 2 -", () => {
+    expect(runner("rpn: 10 2 -")).toEqual(8);
+  });
+
+  it("10 -2 +", () => {
+    expect(runner("rpn: 10 -2 +")).toEqual(8);
+  });
+
+  it("12 100 * 2 / 232 999 - +", () => {
+    expect(runner("rpn: 12 100 * 2 / 232 999 - +")).toEqual(-167);
+  });
+});

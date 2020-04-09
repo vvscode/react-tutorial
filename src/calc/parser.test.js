@@ -1,4 +1,4 @@
-import { parser } from "./parser";
+import { parser, parseRPN } from "./parser";
 
 describe("parser test cases", () => {
   it("parse '1+2' to equal [1, '+', 2]", () => {
@@ -40,6 +40,34 @@ describe("parser test cases", () => {
       ")",
       "/",
       50,
+    ]);
+  });
+});
+
+describe("RPN parser test cases", () => {
+  it("parse '1 2 +' to equal [1, 2, '+']", () => {
+    expect(parseRPN("1 2 +")).toEqual([1, 2, "+"]);
+  });
+
+  it("parse '1 2 + 3 *' to equal [1, 2, '+', 3, '*']", () => {
+    expect(parseRPN("1 2 + 3 *")).toEqual([1, 2, "+", 3, "*"]);
+  });
+
+  it("parse '-10 1 - 3 / 2 + 1 - 2 2 * +' to equal [-10, 1, '-', 3, '/', 2, '+', 1, '-', 2, 2, '*', '+']", () => {
+    expect(parseRPN("-10 1 - 3 / 2 + 1 - 2 2 * +")).toEqual([
+      -10,
+      1,
+      "-",
+      3,
+      "/",
+      2,
+      "+",
+      1,
+      "-",
+      2,
+      2,
+      "*",
+      "+",
     ]);
   });
 });
