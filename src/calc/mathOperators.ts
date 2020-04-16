@@ -3,25 +3,17 @@ export type BinaryOperatorType = (
   secondOperand: number
 ) => number;
 
-export const add: BinaryOperatorType = (
-  firstOperand: number,
-  secondOperand: number
-): number => firstOperand + secondOperand;
+export const add: BinaryOperatorType = (firstOperand, secondOperand) =>
+  firstOperand + secondOperand;
 
-export const sub: BinaryOperatorType = (
-  firstOperand: number,
-  secondOperand: number
-): number => firstOperand - secondOperand;
+export const sub: BinaryOperatorType = (firstOperand, secondOperand) =>
+  firstOperand - secondOperand;
 
-export const div: BinaryOperatorType = (
-  firstOperand: number,
-  secondOperand: number
-): number => (secondOperand === 0 ? 0 : firstOperand / secondOperand);
+export const div: BinaryOperatorType = (firstOperand, secondOperand) =>
+  secondOperand === 0 ? 0 : firstOperand / secondOperand;
 
-export const mul: BinaryOperatorType = (
-  firstOperand: number,
-  secondOperand: number
-): number => firstOperand * secondOperand;
+export const mul: BinaryOperatorType = (firstOperand, secondOperand) =>
+  firstOperand * secondOperand;
 
 export const mathOperators: { [key: string]: BinaryOperatorType } = {
   "*": mul,
