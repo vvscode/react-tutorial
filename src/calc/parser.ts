@@ -16,7 +16,6 @@ export const parser = (line: string): NotationType => {
 
     if (isOperators(char) || isBrackets(char)) {
       if (num !== "") {
-        debugger;
         stack.push(Number.parseInt(num));
         num = "";
       }
